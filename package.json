@@ -17,11 +17,8 @@
   "dependencies": {
     "express": "^4.18.2",
     "figlet": "^1.7.0",
-    "hubot-dad-jokes": "^1.0.11",
     "node-fetch": "^3.3.2",
     "nodemon": "^3.0.1",
-    "poemhub": "^0.1.0",
-    "poemify": "^1.1.1",
     "random-words": "^2.0.0",
     "txtgen": "^3.0.6"
   },

@@ -4,6 +4,8 @@ import fetch from 'node-fetch'
 
 import figlet from 'figlet'
 
+import { generate, count } from "random-words";
+
 const app = express()
 
 const port = process.env.PORT || 3001
@@ -12,17 +14,19 @@ const port = process.env.PORT || 3001
 app.get('/', (req, res) => {
   // res.send(sentence())
   // res.send("hello hello! Please draw an octopus, or post an octopus related meme!! :DD")
-
-  figlet("Hello World!!", function (err, data) {
+  let randomword = generate();
+  figlet(randomword, function (err, data) {
     if (err) {
       console.log("Something went wrong...");
       console.dir(err);
       return;
     }
     const formattedData = data.replace(/ /g, '&nbsp;').replace(/\n/g, '<br>');
-    res.send(`<pre>${formattedData}</pre>`);
-    // res.send(data)
-    // console.log(data);
+    res.send(`
+    a randomly generate word:[${randomword}] in ASCII
+    <br>
+    <pre>${formattedData}</pre>
+    `);
   });
 
 })

@@ -1,31 +1,34 @@
-// Import the express library and assign it to a variable
 import express from 'express'
+import { sentence, paragraph } from 'txtgen'
+import fetch from 'node-fetch'
 
-// Add this line to the top of the file
-import {
-  sentence
-} from 'txtgen'
+import figlet from 'figlet'
 
-// // Update the express app code below to this:
-// app.get('/', (req, res) => {
-//   const randomSentence = sentence()
-
-//   res.send(randomSentence)
-// })
-
-// Create an instance of an express application 
 const app = express()
 
-// Set the port the application will be running on
 const port = process.env.PORT || 3001
 
 // Set up a response for the root path of the application
 app.get('/', (req, res) => {
-  res.send(sentence())
+  // res.send(sentence())
   // res.send("hello hello! Please draw an octopus, or post an octopus related meme!! :DD")
+
+  figlet("Hello World!!", function (err, data) {
+    if (err) {
+      console.log("Something went wrong...");
+      console.dir(err);
+      return;
+    }
+    const formattedData = data.replace(/ /g, '&nbsp;').replace(/\n/g, '<br>');
+    res.send(`<pre>${formattedData}</pre>`);
+    // res.send(data)
+    // console.log(data);
+  });
+
 })
 
 // Set the application to listen a port
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
